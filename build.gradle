@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+}
+
+defaultTasks 'clean', 'shadowJar', 'build'
+
+allprojects {
+    group 'me.xneox'
+    version '1.0.0'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+subprojects {
+    apply plugin: "java"
+    apply plugin: "com.github.johnrengelman.shadow"
+
+    processResources {
+        expand projectVersion: project.version
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation 'org.spongepowered:configurate-hocon:4.1.1'
+    }
+
+    shadowJar {
+        minimize()
+
+        relocate 'org.bstats', 'me.xneox.epicguard.libs.bstats'
+        relocate 'org.spongepowered.configurate', 'me.xneox.epicguard.libs.configurate'
+        relocate 'org.yaml.snakeyaml', 'me.xneox.epicguard.libs.snakeyaml'
+        relocate 'io.leangen.geantyref', 'me.xneox.epicguard.libs.geantyref'
+    }
+}
+
+// Include all platforms in one jar.
+dependencies {
+    implementation project(path: ':core', configuration: 'shadow')
+}

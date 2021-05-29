@@ -5,6 +5,7 @@ import me.xneox.commandcontrol.bungee.listener.CommandListener;
 import me.xneox.commandcontrol.bungee.listener.TabCompleteListener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
+import org.bstats.bungeecord.Metrics;
 
 public class CommandControlBungee extends Plugin {
     @Override
@@ -14,5 +15,7 @@ public class CommandControlBungee extends Plugin {
         PluginManager pm = this.getProxy().getPluginManager();
         pm.registerListener(this, new CommandListener(commandControl));
         pm.registerListener(this, new TabCompleteListener(commandControl));
+
+        new Metrics(this, 11525);
     }
 }

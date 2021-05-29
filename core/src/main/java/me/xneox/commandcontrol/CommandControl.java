@@ -8,19 +8,15 @@ import java.io.File;
 public class CommandControl {
     private PluginConfiguration config;
 
-    private final Platform platform;
+    public CommandControl() {
+        this.loadConfig();
+    }
 
-    public CommandControl(Platform platform) {
-        this.platform = platform;
-
+    public void loadConfig() {
         File dataFolder = new File("plugins/CommandControl");
         dataFolder.mkdir();
 
         this.config = ConfigUtils.loadConfig(new File(dataFolder, "config.conf"), PluginConfiguration.class);
-    }
-
-    public Platform platform() {
-        return this.platform;
     }
 
     public PluginConfiguration config() {

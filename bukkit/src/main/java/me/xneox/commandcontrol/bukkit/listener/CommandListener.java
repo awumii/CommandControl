@@ -8,10 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.server.ServerCommandEvent;
 
-public class CommandPreprocessListener extends CommandHandler implements Listener {
-    public CommandPreprocessListener(CommandControl commandControl) {
+public class CommandListener extends CommandHandler implements Listener {
+    public CommandListener(CommandControl commandControl) {
         super(commandControl);
     }
 
@@ -24,6 +23,8 @@ public class CommandPreprocessListener extends CommandHandler implements Listene
         }
     }
 
+    /* uncomment when someone opens a ticket saying "can you add console command blacklist?????" (yes, it happened before)
+
     @EventHandler
     public void onConsoleCommand(ServerCommandEvent event) {
         Sender<CommandSender> sender = new BukkitSender(event.getSender());
@@ -32,4 +33,5 @@ public class CommandPreprocessListener extends CommandHandler implements Listene
             event.setCancelled(true);
         }
     }
+     */
 }

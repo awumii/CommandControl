@@ -1,4 +1,5 @@
 rootProject.name = 'CommandControl'
 include 'core'
 include 'bukkit'
+include 'bungee'
 

@@ -1,0 +1,6 @@
+name: CommandControl
+version: '${projectVersion}'
+main: me.xneox.commandcontrol.bungee.CommandControlBungee
+
+author: xNeox
+description: Command whitelist, blacklist, custom tab completion and operator protection!

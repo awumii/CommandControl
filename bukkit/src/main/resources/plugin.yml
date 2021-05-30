@@ -5,3 +5,19 @@ api-version: 1.13
 
 author: xNeox
 description: Command whitelist, blacklist, custom tab completion and operator protection!
+
+commands:
+  commandcontrol:
+    aliases: [ cmc, cmdcontrol ]
+    description: Main help command.
+    permission: commandcontrol.admin
+
+permissions:
+  commandcontrol.bypass.custom-tab-complete:
+    description: Allows to bypass custom tab completion.
+  commandcontrol.bypass.allowed-commands:
+    description: Allows to bypass the allowed commands whitelist.
+  commandcontrol.bypass.blocked-commands:
+    description: Allows to run blacklisted commands.
+  commandcontrol.bypass.namespaced-commands:
+    description: Allows to run namespaced commands.

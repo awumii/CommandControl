@@ -7,6 +7,7 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import me.xneox.commandcontrol.CommandControl;
+import me.xneox.commandcontrol.velocity.command.VelocityCommandExecutor;
 import me.xneox.commandcontrol.velocity.listener.CommandListener;
 import org.bstats.velocity.Metrics;
 
@@ -29,6 +30,10 @@ public class CommandControlVelocity {
     @Subscribe
     public void onEnable(ProxyInitializeEvent event) {
         CommandControl commandControl = new CommandControl();
+
+        this.server.getCommandManager().register("commandcontrol",
+                new VelocityCommandExecutor(commandControl),
+                "cmc", "cmdcontrol");
 
         EventManager eventManager = this.server.getEventManager();
         eventManager.register(this, new CommandListener(commandControl));

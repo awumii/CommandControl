@@ -32,14 +32,18 @@ subprojects {
     shadowJar {
         minimize()
 
-        relocate 'org.bstats', 'me.xneox.epicguard.libs.bstats'
-        relocate 'org.spongepowered.configurate', 'me.xneox.epicguard.libs.configurate'
-        relocate 'org.yaml.snakeyaml', 'me.xneox.epicguard.libs.snakeyaml'
-        relocate 'io.leangen.geantyref', 'me.xneox.epicguard.libs.geantyref'
+        relocate 'org.bstats', 'me.xneox.commandcontrol.libs.bstats'
+        relocate 'org.spongepowered.configurate', 'me.xneox.commandcontrol.libs.configurate'
+        relocate 'org.yaml.snakeyaml', 'me.xneox.commandcontrol.libs.snakeyaml'
+        relocate 'io.leangen.geantyref', 'me.xneox.commandcontrol.libs.geantyref'
+        relocate 'com.typesafe.config', 'me.xneox.commandcontrol.libs.config'
     }
 }
 
 // Include all platforms in one jar.
 dependencies {
     implementation project(path: ':core', configuration: 'shadow')
+    implementation project(path: ':bukkit', configuration: 'shadow')
+    implementation project(path: ':bungee', configuration: 'shadow')
+    implementation project(path: ':velocity', configuration: 'shadow')
 }

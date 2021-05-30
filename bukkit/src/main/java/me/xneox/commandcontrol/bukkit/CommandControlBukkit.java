@@ -29,7 +29,8 @@ public class CommandControlBukkit extends JavaPlugin {
 
         // Spigot-exclusive feature: Operator Protection.
         Bukkit.getScheduler().runTaskTimer(this,
-                new OperatorProtectionTask(commandControl), 0L, commandControl.config().operatorProtection().checkInterval());
+                new OperatorProtectionTask(commandControl), 0L,
+                commandControl.config().operatorProtection().checkInterval() * 20L);
 
         new Metrics(this, 11524);
     }

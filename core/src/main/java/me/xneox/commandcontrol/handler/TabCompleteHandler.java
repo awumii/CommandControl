@@ -16,7 +16,7 @@ public class TabCompleteHandler {
 
     public void handle(@NonNull Sender<?> sender, @NonNull Collection<String> commands) {
         PluginConfiguration.CustomTabComplete config = this.commandControl.config().customTabComplete();
-        if (config.enabled()) {
+        if (!config.enabled()) {
             return;
         }
 

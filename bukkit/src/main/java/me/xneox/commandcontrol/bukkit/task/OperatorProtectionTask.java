@@ -14,7 +14,7 @@ public class OperatorProtectionTask implements Runnable {
 
     @Override
     public void run() {
-        PluginConfiguration.OperatorProtection config = commandControl.config().operatorProtection();
+        PluginConfiguration.OperatorProtection config = this.commandControl.config().operatorProtection();
         if (!config.enabled()) {
             return;
         }

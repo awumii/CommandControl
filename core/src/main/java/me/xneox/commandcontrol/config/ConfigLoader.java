@@ -3,6 +3,7 @@ package me.xneox.commandcontrol.config;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;
+import org.spongepowered.configurate.ConfigurationOptions;
 import org.spongepowered.configurate.hocon.HoconConfigurationLoader;
 import org.spongepowered.configurate.objectmapping.ObjectMapper;
 import org.spongepowered.configurate.serialize.SerializationException;
@@ -15,6 +16,7 @@ public class ConfigLoader<C> {
 
     public ConfigLoader(@NonNull File file, @NonNull Class<C> implementation) {
         this.loader = HoconConfigurationLoader.builder()
+                .defaultOptions(ConfigurationOptions.defaults())
                 .file(file)
                 .build();
 

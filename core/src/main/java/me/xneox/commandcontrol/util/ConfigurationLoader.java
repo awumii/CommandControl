@@ -1,24 +1,22 @@
-package me.xneox.commandcontrol.config;
+package me.xneox.commandcontrol.util;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;
-import org.spongepowered.configurate.ConfigurationOptions;
 import org.spongepowered.configurate.hocon.HoconConfigurationLoader;
 import org.spongepowered.configurate.objectmapping.ObjectMapper;
 import org.spongepowered.configurate.serialize.SerializationException;
 
 import java.io.File;
 
-public class ConfigLoader<C> {
+public class ConfigurationLoader<C> {
     private final HoconConfigurationLoader loader;
     private ObjectMapper<C> mapper;
 
-    public ConfigLoader(@NonNull File file, @NonNull Class<C> implementation) {
+    public ConfigurationLoader(@NotNull File file, @NotNull Class<C> implementation) {
         this.loader = HoconConfigurationLoader.builder()
-                .defaultOptions(ConfigurationOptions.defaults())
-                .file(file)
-                .build();
+            .file(file)
+            .build();
 
         try {
             this.mapper = ObjectMapper.factory().get(implementation);
@@ -27,12 +25,15 @@ public class ConfigLoader<C> {
         }
     }
 
-    @NonNull
+    @NotNull
     public C load() throws ConfigurateException {
-        return this.mapper.load(this.loader.load());
+        C configuration = this.mapper.load(this.loader.load());
+
+        this.save(configuration); // write default values
+        return configuration;
     }
 
-    public void save(@NonNull C config) throws ConfigurateException {
+    public void save(@NotNull C config) throws ConfigurateException {
         CommentedConfigurationNode node = this.loader.createNode();
         this.mapper.save(config, node);
         this.loader.save(node);

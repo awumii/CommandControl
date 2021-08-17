@@ -1,38 +1,39 @@
-package me.xneox.commandcontrol.handler;
+package me.xneox.commandcontrol.listener;
 
 import me.xneox.commandcontrol.CommandControl;
-import me.xneox.commandcontrol.command.Sender;
 import me.xneox.commandcontrol.config.PluginConfiguration;
+import me.xneox.commandcontrol.util.AdventureUtils;
+import net.kyori.adventure.audience.Audience;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TabCompleteHandler {
+public class TabCompleteListener {
     private final CommandControl commandControl;
 
-    public TabCompleteHandler(CommandControl commandControl) {
+    public TabCompleteListener(CommandControl commandControl) {
         this.commandControl = commandControl;
     }
 
-    public void handle(@NonNull Sender<?> sender, @NonNull Collection<String> commands) {
+    public void handle(@NonNull Audience sender, @NonNull Collection<String> originalSuggestions) {
         PluginConfiguration.CustomTabComplete config = this.commandControl.config().customTabComplete();
         if (!config.enabled()) {
             return;
         }
 
-        if (config.useBypassPermission() && sender.hasPermission("commandcontrol.bypass.custom-tab-complete")) {
+        if (config.useBypassPermission() && AdventureUtils.hasPermission(sender, "commandcontrol.bypass.custom-tab-complete")) {
             return;
         }
 
-        List<String> list = config.commands().stream()
+        List<String> newCompletions = config.commands().stream()
                 .map(s -> s.replace("/", ""))
                 .collect(Collectors.toList());
+
         // Replace default tab completion with custom values.
         // Must be done this way because Bukkit :/
-        commands.clear();
-        commands.addAll(list);
+        originalSuggestions.clear();
+        originalSuggestions.addAll(newCompletions);
     }
 }

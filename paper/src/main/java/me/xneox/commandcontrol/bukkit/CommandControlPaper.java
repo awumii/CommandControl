@@ -1,7 +1,8 @@
 package me.xneox.commandcontrol.bukkit;
 
 import me.xneox.commandcontrol.CommandControl;
-import me.xneox.commandcontrol.bukkit.command.BukkitCommandExecutor;
+import me.xneox.commandcontrol.Platform;
+import me.xneox.commandcontrol.bukkit.command.BukkitCommandHandler;
 import me.xneox.commandcontrol.bukkit.listener.CommandListener;
 import me.xneox.commandcontrol.bukkit.listener.TabCompleteListener;
 import me.xneox.commandcontrol.bukkit.task.OperatorProtectionTask;
@@ -10,11 +11,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.slf4j.Logger;
 
-public class CommandControlBukkit extends JavaPlugin {
+public class CommandControlPaper extends JavaPlugin implements Platform {
     @Override
     public void onEnable() {
-        CommandControl commandControl = new CommandControl();
+        CommandControl commandControl = new CommandControl(this);
 
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new CommandListener(commandControl), this);
@@ -22,7 +24,7 @@ public class CommandControlBukkit extends JavaPlugin {
 
         PluginCommand command = this.getCommand("commandcontrol");
         if (command != null) {
-            BukkitCommandExecutor handler = new BukkitCommandExecutor(commandControl);
+            BukkitCommandHandler handler = new BukkitCommandHandler(commandControl);
             command.setExecutor(handler);
             command.setTabCompleter(handler);
         }
@@ -33,5 +35,10 @@ public class CommandControlBukkit extends JavaPlugin {
                 commandControl.config().operatorProtection().checkInterval() * 20L);
 
         new Metrics(this, 11524);
+    }
+
+    @Override
+    public Logger logger() {
+        return this.getSLF4JLogger();
     }
 }

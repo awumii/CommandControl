@@ -7,37 +7,47 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import me.xneox.commandcontrol.CommandControl;
-import me.xneox.commandcontrol.velocity.command.VelocityCommandExecutor;
+import me.xneox.commandcontrol.Platform;
+import me.xneox.commandcontrol.velocity.command.VelocityCommandHandler;
 import me.xneox.commandcontrol.velocity.listener.CommandListener;
+import me.xneox.commandcontrol.velocity.listener.TabCompleteListener;
 import org.bstats.velocity.Metrics;
+import org.slf4j.Logger;
 
-@Plugin(
-        id = "commandcontrol",
+@Plugin(id = "commandcontrol",
         name = "CommandControl",
         version = "{version}",
         description = "Command whitelist, blacklist, custom tab completion and operator protection!",
         authors = "xNeox")
-public class CommandControlVelocity {
+public class CommandControlVelocity implements Platform {
     private final ProxyServer server;
+    private final Logger logger;
     private final Metrics.Factory metricsFactory;
 
     @Inject
-    public CommandControlVelocity(ProxyServer server, Metrics.Factory metricsFactory) {
+    public CommandControlVelocity(ProxyServer server, Logger logger, Metrics.Factory metricsFactory) {
         this.server = server;
+        this.logger = logger;
         this.metricsFactory = metricsFactory;
     }
 
     @Subscribe
     public void onEnable(ProxyInitializeEvent event) {
-        CommandControl commandControl = new CommandControl();
+        CommandControl commandControl = new CommandControl(this);
 
         this.server.getCommandManager().register("commandcontrol",
-                new VelocityCommandExecutor(commandControl),
+                new VelocityCommandHandler(commandControl),
                 "cmc", "cmdcontrol");
 
         EventManager eventManager = this.server.getEventManager();
         eventManager.register(this, new CommandListener(commandControl));
+        eventManager.register(this, new TabCompleteListener(commandControl));
 
         this.metricsFactory.make(this, 11523);
+    }
+
+    @Override
+    public Logger logger() {
+        return this.logger;
     }
 }

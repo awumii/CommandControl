@@ -2,23 +2,24 @@ package me.xneox.commandcontrol.velocity.command;
 
 import com.velocitypowered.api.command.SimpleCommand;
 import me.xneox.commandcontrol.CommandControl;
-import me.xneox.commandcontrol.command.CommandExecutor;
 
 import java.util.List;
 
-public class VelocityCommandExecutor extends CommandExecutor implements SimpleCommand {
-    public VelocityCommandExecutor(CommandControl commandControl) {
-        super(commandControl);
+public class VelocityCommandHandler implements SimpleCommand {
+    private final CommandControl commandControl;
+
+    public VelocityCommandHandler(CommandControl commandControl) {
+        this.commandControl = commandControl;
     }
 
     @Override
     public void execute(Invocation invocation) {
-        this.handle(invocation.arguments(), new VelocitySender(invocation.source()));
+        this.commandControl.commandHandler().handle(invocation.source(), invocation.arguments());
     }
 
     @Override
     public List<String> suggest(Invocation invocation) {
-        return this.suggestions(invocation.arguments());
+        return this.commandControl.commandHandler().suggest(invocation.arguments());
     }
 
     @Override

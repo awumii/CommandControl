@@ -1,24 +1,27 @@
 package me.xneox.commandcontrol.velocity.listener;
 
-import com.velocitypowered.api.command.CommandSource;
+import com.mojang.brigadier.tree.CommandNode;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.command.PlayerAvailableCommandsEvent;
+import java.util.List;
+import java.util.stream.Collectors;
 import me.xneox.commandcontrol.CommandControl;
-import me.xneox.commandcontrol.command.Sender;
-import me.xneox.commandcontrol.handler.TabCompleteHandler;
-import me.xneox.commandcontrol.velocity.command.VelocitySender;
 
-public class TabCompleteListener extends TabCompleteHandler {
+@SuppressWarnings("UnstableApiUsage")
+public class TabCompleteListener {
+    private final CommandControl commandControl;
+
     public TabCompleteListener(CommandControl commandControl) {
-        super(commandControl);
+        this.commandControl = commandControl;
     }
 
     @Subscribe
     public void onTabComplete(PlayerAvailableCommandsEvent event) {
-        Sender<CommandSource> sender = new VelocitySender(event.getPlayer());
-        this.handle(sender, event.getRootNode().getExamples());
+        // TODO: Test if this even works (probably not).
+        List<String> originalSuggestions = event.getRootNode().getChildren().stream().map(
+            CommandNode::getName)
+            .collect(Collectors.toList());
 
-        // i have no idea how to modify tab completion in velocity.
-        // if anyone knows please open a PR :D
+        this.commandControl.tabCompleteListener().handle(event.getPlayer(), originalSuggestions);
     }
 }

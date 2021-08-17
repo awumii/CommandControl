@@ -32,6 +32,5 @@ tasks {
 dependencies {
     implementation(project(":core"))
     implementation(project(":paper"))
-    implementation(project(":bungee"))
     implementation(project(":velocity"))
 }

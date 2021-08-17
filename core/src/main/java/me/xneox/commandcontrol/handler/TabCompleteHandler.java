@@ -5,7 +5,10 @@ import me.xneox.commandcontrol.command.Sender;
 import me.xneox.commandcontrol.config.PluginConfiguration;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TabCompleteHandler {
     private final CommandControl commandControl;
@@ -24,9 +27,12 @@ public class TabCompleteHandler {
             return;
         }
 
+        List<String> list = config.commands().stream()
+                .map(s -> s.replace("/", ""))
+                .collect(Collectors.toList());
         // Replace default tab completion with custom values.
         // Must be done this way because Bukkit :/
         commands.clear();
-        commands.addAll(config.commands());
+        commands.addAll(list);
     }
 }

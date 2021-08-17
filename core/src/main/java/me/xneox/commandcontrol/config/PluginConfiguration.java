@@ -139,7 +139,7 @@ public class PluginConfiguration {
         private boolean useBypassPermission = false;
 
         @Comment("Custom commands displayed for players when tab completing on '/'")
-        private List<String> commands = Arrays.asList("spawn", "msg", "reply");
+        private List<String> commands = Arrays.asList("/spawn", "/msg", "/reply");
 
         public boolean enabled() {
             return this.enabled;

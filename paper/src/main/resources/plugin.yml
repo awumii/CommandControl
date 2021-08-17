@@ -1,9 +1,9 @@
 name: CommandControl
 version: '${projectVersion}'
 main: me.xneox.commandcontrol.bukkit.CommandControlBukkit
-api-version: 1.13
+api-version: 1.17
 
-author: xNeox
+author: neox
 description: Command whitelist, blacklist, custom tab completion and operator protection!
 
 commands:

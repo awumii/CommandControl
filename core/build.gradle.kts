@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation("org.spongepowered:configurate-hocon:4.1.1")
+    implementation("org.spongepowered:configurate-hocon:4.1.2")
 
     compileOnly("net.kyori:adventure-api:4.8.1")
     compileOnly("net.kyori:adventure-text-serializer-legacy:4.8.1")

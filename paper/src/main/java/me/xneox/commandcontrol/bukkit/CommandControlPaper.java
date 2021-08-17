@@ -14,31 +14,30 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 
 public class CommandControlPaper extends JavaPlugin implements Platform {
-    @Override
-    public void onEnable() {
-        CommandControl commandControl = new CommandControl(this);
+  @Override
+  public void onEnable() {
+    CommandControl commandControl = new CommandControl(this);
 
-        PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new CommandListener(commandControl), this);
-        pm.registerEvents(new TabCompleteListener(commandControl), this);
+    PluginManager pm = Bukkit.getPluginManager();
+    pm.registerEvents(new CommandListener(commandControl), this);
+    pm.registerEvents(new TabCompleteListener(commandControl), this);
 
-        PluginCommand command = this.getCommand("commandcontrol");
-        if (command != null) {
-            BukkitCommandHandler handler = new BukkitCommandHandler(commandControl);
-            command.setExecutor(handler);
-            command.setTabCompleter(handler);
-        }
-
-        // Spigot-exclusive feature: Operator Protection.
-        Bukkit.getScheduler().runTaskTimer(this,
-                new OperatorProtectionTask(commandControl), 0L,
-                commandControl.config().operatorProtection().checkInterval() * 20L);
-
-        new Metrics(this, 11524);
+    PluginCommand command = this.getCommand("commandcontrol");
+    if (command != null) {
+      BukkitCommandHandler handler = new BukkitCommandHandler(commandControl);
+      command.setExecutor(handler);
+      command.setTabCompleter(handler);
     }
 
-    @Override
-    public Logger logger() {
-        return this.getSLF4JLogger();
-    }
+    // Spigot-exclusive feature: Operator Protection.
+    Bukkit.getScheduler().runTaskTimer(this,
+        new OperatorProtectionTask(commandControl), 0L, commandControl.config().operatorProtection().checkInterval() * 20L);
+
+    new Metrics(this, 11524);
+  }
+
+  @Override
+  public Logger logger() {
+    return this.getSLF4JLogger();
+  }
 }

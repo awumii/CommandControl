@@ -9,15 +9,11 @@ import org.jetbrains.annotations.NotNull;
 
 public final class AdventureUtils {
   private static final LegacyComponentSerializer SERIALIZER =
-      LegacyComponentSerializer.builder()
-          .character('&')
-          .hexCharacter('#')
-          .hexColors()
-          .build();
+      LegacyComponentSerializer.builder().character('&').hexCharacter('#').hexColors().build();
 
   /**
-   * Returns a formatted TextComponent, colors are replaced
-   * using the & symbol. Hex colors are supported (ex. &#cd7f32).
+   * Returns a formatted TextComponent, colors are replaced using the & symbol.
+   * Hex colors are supported (ex. &#cd7f32).
    *
    * @param message Raw string to be formatted.
    * @return A formatted TextComponent.

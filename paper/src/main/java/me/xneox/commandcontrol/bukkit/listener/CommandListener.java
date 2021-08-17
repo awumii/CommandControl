@@ -6,16 +6,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public class CommandListener implements Listener {
-    private final CommandControl commandControl;
+  private final CommandControl commandControl;
 
-    public CommandListener(CommandControl commandControl) {
-        this.commandControl = commandControl;
-    }
+  public CommandListener(CommandControl commandControl) {
+    this.commandControl = commandControl;
+  }
 
-    @EventHandler
-    public void onCommandPreprocess(PlayerCommandPreprocessEvent event) {
-        if (this.commandControl.commandListener().handle(event.getPlayer(), event.getMessage())) {
-            event.setCancelled(true);
-        }
+  @EventHandler
+  public void onCommandPreprocess(PlayerCommandPreprocessEvent event) {
+    if (this.commandControl.commandListener().handle(event.getPlayer(), event.getMessage())) {
+      event.setCancelled(true);
     }
+  }
 }

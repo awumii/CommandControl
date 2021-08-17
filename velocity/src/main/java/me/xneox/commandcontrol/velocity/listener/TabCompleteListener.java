@@ -9,19 +9,20 @@ import me.xneox.commandcontrol.CommandControl;
 
 @SuppressWarnings("UnstableApiUsage")
 public class TabCompleteListener {
-    private final CommandControl commandControl;
+  private final CommandControl commandControl;
 
-    public TabCompleteListener(CommandControl commandControl) {
-        this.commandControl = commandControl;
-    }
+  public TabCompleteListener(CommandControl commandControl) {
+    this.commandControl = commandControl;
+  }
 
-    @Subscribe
-    public void onTabComplete(PlayerAvailableCommandsEvent event) {
-        // TODO: Test if this even works (probably not).
-        List<String> originalSuggestions = event.getRootNode().getChildren().stream().map(
-            CommandNode::getName)
+  @Subscribe
+  public void onTabComplete(PlayerAvailableCommandsEvent event) {
+    // TODO: Test if this even works (probably not).
+    List<String> originalSuggestions =
+        event.getRootNode().getChildren().stream()
+            .map(CommandNode::getName)
             .collect(Collectors.toList());
 
-        this.commandControl.tabCompleteListener().handle(event.getPlayer(), originalSuggestions);
-    }
+    this.commandControl.tabCompleteListener().handle(event.getPlayer(), originalSuggestions);
+  }
 }

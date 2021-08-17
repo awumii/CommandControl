@@ -5,7 +5,7 @@ plugins {
 
 allprojects {
     group = "me.xneox"
-    version = "1.0.0"
+    version = "2.0.0"
 
     repositories {
         mavenCentral()
@@ -18,7 +18,7 @@ tasks {
     }
 
     shadowJar {
-        minimize()
+        //minimize()
 
         relocate("org.bstats", "me.xneox.commandcontrol.libs.bstats")
         relocate("org.spongepowered.configurate", "me.xneox.commandcontrol.libs.configurate")
@@ -26,7 +26,6 @@ tasks {
         relocate("com.typesafe.config", "me.xneox.commandcontrol.libs.config")
     }
 }
-
 
 // Include all platforms in one jar.
 dependencies {

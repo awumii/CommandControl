@@ -1,4 +1,4 @@
-package me.xneox.commandcontrol.bukkit.listener;
+package me.xneox.commandcontrol.paper.listener;
 
 import me.xneox.commandcontrol.CommandControl;
 import org.bukkit.event.EventHandler;

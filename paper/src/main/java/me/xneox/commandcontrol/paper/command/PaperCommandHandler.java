@@ -1,4 +1,4 @@
-package me.xneox.commandcontrol.bukkit.command;
+package me.xneox.commandcontrol.paper.command;
 
 import java.util.List;
 import me.xneox.commandcontrol.CommandControl;
@@ -9,10 +9,10 @@ import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BukkitCommandHandler implements CommandExecutor, TabCompleter {
+public class PaperCommandHandler implements CommandExecutor, TabCompleter {
   private final CommandControl commandControl;
 
-  public BukkitCommandHandler(CommandControl commandControl) {
+  public PaperCommandHandler(CommandControl commandControl) {
     this.commandControl = commandControl;
   }
 

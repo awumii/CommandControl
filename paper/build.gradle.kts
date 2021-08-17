@@ -1,5 +1,6 @@
 plugins {
     java
+    id("com.github.johnrengelman.shadow")
 }
 
 repositories {

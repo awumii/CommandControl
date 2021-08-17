@@ -1,5 +1,5 @@
 # CommandControl [![GitHub stars](https://img.shields.io/github/stars/xxneox/CommandControl)](https://github.com/xxneox/CommandControl/stargazers) [![GitHub forks](https://img.shields.io/github/forks/xxneox/CommandControl)](https://github.com/xxneox/CommandControl/network) [![GitHub issues](https://img.shields.io/github/issues/xxneox/CommandControl)](https://github.com/xxneox/CommandControl/issues) [![GitHub license](https://img.shields.io/github/license/xxneox/CommandControl)](https://github.com/xxneox/CommandControl/blob/master/LICENSE)
-
+Command whitelist, blacklist, custom tab completion and operator protection.
 ## Supported platforms
 * [Paper 1.16.5+](https://papermc.io/)
 * [Velocity 3.0.0+](https://velocitypowered.com/)

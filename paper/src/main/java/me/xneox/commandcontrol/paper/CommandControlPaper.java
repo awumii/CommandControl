@@ -1,11 +1,11 @@
-package me.xneox.commandcontrol.bukkit;
+package me.xneox.commandcontrol.paper;
 
 import me.xneox.commandcontrol.CommandControl;
 import me.xneox.commandcontrol.Platform;
-import me.xneox.commandcontrol.bukkit.command.BukkitCommandHandler;
-import me.xneox.commandcontrol.bukkit.listener.CommandListener;
-import me.xneox.commandcontrol.bukkit.listener.TabCompleteListener;
-import me.xneox.commandcontrol.bukkit.task.OperatorProtectionTask;
+import me.xneox.commandcontrol.paper.command.PaperCommandHandler;
+import me.xneox.commandcontrol.paper.listener.CommandListener;
+import me.xneox.commandcontrol.paper.listener.TabCompleteListener;
+import me.xneox.commandcontrol.paper.task.OperatorProtectionTask;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
@@ -24,7 +24,7 @@ public class CommandControlPaper extends JavaPlugin implements Platform {
 
     PluginCommand command = this.getCommand("commandcontrol");
     if (command != null) {
-      BukkitCommandHandler handler = new BukkitCommandHandler(commandControl);
+      PaperCommandHandler handler = new PaperCommandHandler(commandControl);
       command.setExecutor(handler);
       command.setTabCompleter(handler);
     }

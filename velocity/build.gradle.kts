@@ -1,5 +1,6 @@
 plugins {
     java
+    id("com.github.johnrengelman.shadow")
     id("net.kyori.blossom") version "1.2.0"
 }
 

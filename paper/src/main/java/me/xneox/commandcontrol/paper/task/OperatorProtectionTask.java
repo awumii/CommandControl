@@ -1,4 +1,4 @@
-package me.xneox.commandcontrol.bukkit.task;
+package me.xneox.commandcontrol.paper.task;
 
 import me.xneox.commandcontrol.CommandControl;
 import me.xneox.commandcontrol.config.PluginConfiguration;

@@ -1,10 +1,10 @@
 name: CommandControl
 version: '${projectVersion}'
-main: me.xneox.commandcontrol.bukkit.CommandControlBukkit
+main: me.xneox.commandcontrol.paper.CommandControlPaper
 api-version: 1.17
 
 author: neox
-description: Command whitelist, blacklist, custom tab completion and operator protection!
+description: Command whitelist, blacklist, custom tab completion and operator protection.
 
 commands:
   commandcontrol:

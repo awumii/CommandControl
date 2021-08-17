@@ -17,6 +17,6 @@ dependencies {
 
     implementation("org.bstats:bstats-velocity:2.2.1")
 
-    compileOnly("com.velocitypowered:velocity-api:1.1.9")
+    compileOnly("com.velocitypowered:velocity-api:3.0.0")
     annotationProcessor("com.velocitypowered:velocity-api:1.1.5")
 }

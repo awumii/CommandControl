@@ -14,7 +14,7 @@ public class CommandListener implements Listener {
 
   @EventHandler
   public void onCommandPreprocess(PlayerCommandPreprocessEvent event) {
-    if (this.commandControl.commandListener().handle(event.getPlayer(), event.getMessage())) {
+    if (this.commandControl.commandListener().handle(event.getPlayer(), event.getPlayer().getUniqueId(), event.getMessage())) {
       event.setCancelled(true);
     }
   }

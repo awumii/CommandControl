@@ -1,7 +1,9 @@
 package me.xneox.commandcontrol;
 
-import org.slf4j.Logger;
+import java.util.UUID;
+import org.jetbrains.annotations.NotNull;
 
 public interface Platform {
-  Logger logger();
+  // TODO: use Adventure after Paper implements Pointers.
+  boolean hasPermission(@NotNull UUID uuid, @NotNull String permission);
 }

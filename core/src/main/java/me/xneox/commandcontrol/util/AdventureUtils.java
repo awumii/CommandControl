@@ -1,8 +1,5 @@
 package me.xneox.commandcontrol.util;
 
-import java.util.Optional;
-import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.permission.PermissionChecker;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.jetbrains.annotations.NotNull;
@@ -23,8 +20,10 @@ public final class AdventureUtils {
     return SERIALIZER.deserialize(message);
   }
 
+  /* NOT IMPLEMENTED IN PAPER...
   public static boolean hasPermission(@NotNull Audience audience, @NotNull String permission) {
     Optional<PermissionChecker> optional = audience.get(PermissionChecker.POINTER);
     return optional.map(permissionChecker -> permissionChecker.test(permission)).orElse(false);
   }
+   */
 }

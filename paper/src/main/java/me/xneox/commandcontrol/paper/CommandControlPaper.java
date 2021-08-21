@@ -1,5 +1,6 @@
 package me.xneox.commandcontrol.paper;
 
+import java.util.UUID;
 import me.xneox.commandcontrol.CommandControl;
 import me.xneox.commandcontrol.Platform;
 import me.xneox.commandcontrol.paper.command.PaperCommandHandler;
@@ -9,9 +10,10 @@ import me.xneox.commandcontrol.paper.task.OperatorProtectionTask;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.slf4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 public class CommandControlPaper extends JavaPlugin implements Platform {
   @Override
@@ -37,7 +39,11 @@ public class CommandControlPaper extends JavaPlugin implements Platform {
   }
 
   @Override
-  public Logger logger() {
-    return this.getSLF4JLogger();
+  public boolean hasPermission(@NotNull UUID uuid, @NotNull String permission) {
+    Player player = Bukkit.getPlayer(uuid);
+    if (player != null) {
+      return player.hasPermission(permission);
+    }
+    return false;
   }
 }

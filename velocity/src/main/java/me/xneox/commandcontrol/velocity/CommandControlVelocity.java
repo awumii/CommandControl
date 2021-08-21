@@ -6,13 +6,14 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
+import java.util.UUID;
 import me.xneox.commandcontrol.CommandControl;
 import me.xneox.commandcontrol.Platform;
 import me.xneox.commandcontrol.velocity.command.VelocityCommandHandler;
 import me.xneox.commandcontrol.velocity.listener.CommandListener;
 import me.xneox.commandcontrol.velocity.listener.TabCompleteListener;
 import org.bstats.velocity.Metrics;
-import org.slf4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 @Plugin(
     id = "commandcontrol",
@@ -22,13 +23,11 @@ import org.slf4j.Logger;
     authors = "xNeox")
 public class CommandControlVelocity implements Platform {
   private final ProxyServer server;
-  private final Logger logger;
   private final Metrics.Factory metricsFactory;
 
   @Inject
-  public CommandControlVelocity(ProxyServer server, Logger logger, Metrics.Factory metricsFactory) {
+  public CommandControlVelocity(ProxyServer server, Metrics.Factory metricsFactory) {
     this.server = server;
-    this.logger = logger;
     this.metricsFactory = metricsFactory;
   }
 
@@ -47,7 +46,9 @@ public class CommandControlVelocity implements Platform {
   }
 
   @Override
-  public Logger logger() {
-    return this.logger;
+  public boolean hasPermission(@NotNull UUID uuid, @NotNull String permission) {
+    return this.server.getPlayer(uuid)
+        .map(player -> player.hasPermission(permission))
+        .orElse(false);
   }
 }

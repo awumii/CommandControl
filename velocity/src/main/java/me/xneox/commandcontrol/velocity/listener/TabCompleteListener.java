@@ -23,6 +23,6 @@ public class TabCompleteListener {
             .map(CommandNode::getName)
             .collect(Collectors.toList());
 
-    this.commandControl.tabCompleteListener().handle(event.getPlayer(), originalSuggestions);
+    this.commandControl.tabCompleteListener().handle(event.getPlayer(), event.getPlayer().getUniqueId(), originalSuggestions);
   }
 }

@@ -14,6 +14,6 @@ public class TabCompleteListener implements Listener {
 
   @EventHandler
   public void onPlayerCommandSend(PlayerCommandSendEvent event) {
-    this.commandControl.tabCompleteListener().handle(event.getPlayer(), event.getCommands());
+    this.commandControl.tabCompleteListener().handle(event.getPlayer(), event.getPlayer().getUniqueId(), event.getCommands());
   }
 }

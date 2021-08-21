@@ -24,7 +24,6 @@ public class CommandControl {
     this.tabCompleteListener = new TabCompleteListener(this);
 
     this.loadConfig();
-    platform.logger().info("CommandControl has been succesfully loaded!");
   }
 
   public void loadConfig() {
@@ -32,8 +31,12 @@ public class CommandControl {
     try {
       this.config = new ConfigurationLoader<>(configFile, PluginConfiguration.class).load();
     } catch (ConfigurateException exception) {
-      platform.logger().error("Could not load the plugin's configuration: ", exception);
+      exception.printStackTrace();
     }
+  }
+
+  public Platform platform() {
+    return this.platform;
   }
 
   public PluginConfiguration config() {

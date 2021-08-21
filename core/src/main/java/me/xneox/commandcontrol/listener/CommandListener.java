@@ -22,7 +22,7 @@ public class CommandListener {
 
   public boolean handle(@NotNull Audience sender, @NotNull UUID uuid, @NotNull String command) {
     for (Module module : this.modules) {
-      if (module.handle(sender, uuid, command)) {
+      if (module.handle(sender, uuid, command.split(" ")[0])) {
         return true;
       }
     }
